@@ -1,6 +1,9 @@
 ---
 - name: Get Cisco switch version
-- hosts: 192.168.50.11
+- hosts: switches
+  remote_user: manager
+  become: true
+  become_method: enable
   gather_facts: false
   connection: local
   
@@ -9,7 +12,7 @@
 
   tasks:
     - name: show version
-    cisco.ios.ios_command:
-    commands:
-    - show version
+      cisco.ios.ios_command:
+        commands:
+        - show version
 
